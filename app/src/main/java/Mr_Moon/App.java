@@ -19,7 +19,7 @@ public class App {
     public static void main(String[] args) throws LoginException {
         
     //the start of the bot(adds in the ability to use commands from Commands.java)
-    JDABuilder builder = JDABuilder.createDefault(args[0]).addEventListeners(new Commands());
+    JDABuilder builder = JDABuilder.createDefault(args[0]).addEventListeners(new CommandsNew());
     // Disable parts of the cache
     builder.disableCache(CacheFlag.MEMBER_OVERRIDES);
     // Enable the bulk delete event
@@ -27,8 +27,9 @@ public class App {
     // Disable compression (not recommended)
     builder.setCompression(Compression.NONE);
     // Set activity
-    builder.setActivity(Activity.listening("To Discord!"));
+    builder.setActivity(Activity.watching("Discord"));
     //actually building the bot
     builder.build();
+    
     }
 }

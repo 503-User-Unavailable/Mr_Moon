@@ -16,7 +16,7 @@ public class TrackScheduler extends AudioEventAdapter {
     public final AudioPlayer player;
     public final BlockingQueue<AudioTrack> queue;
     public boolean looping = false;
-
+    public boolean fullLoop = false;
 
     public TrackScheduler(AudioPlayer player){
         this.player = player;
@@ -44,14 +44,22 @@ public class TrackScheduler extends AudioEventAdapter {
   
     @Override
     public void onTrackStart(AudioPlayer player, AudioTrack track) {
-        // A track started playing
+        // next track starts
     }
   
+    public void queuedLoop() {
+        
+    }
+
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         if (endReason.mayStartNext) {
             if (this.looping){
                 this.player.startTrack(track.makeClone(), false);
+            }
+            else if (this.fullLoop){
+                this.queue.offer(track.makeClone());
+                nextTrack();
             }
             else nextTrack();
         }
@@ -65,6 +73,7 @@ public class TrackScheduler extends AudioEventAdapter {
     }
 
     public void nextTrack() {
+        //just seeing if fullLoop is active, and 
         // Start the next track, regardless of if something is already playing or not. In case queue was empty, we are
         // giving null to startTrack, which is a valid argument and will simply stop the player.
         player.startTrack(queue.poll(), false);
