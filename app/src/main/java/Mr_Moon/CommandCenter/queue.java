@@ -34,6 +34,11 @@ public class queue implements CommandInterface{
         else {page = Integer.parseInt(msg[1]);}
         int totalPages = queue.size()/10;
         if (queue.size()%10 != 0) {totalPages++;}
+    //seeing if there is any songs at all
+        if(queue.size() == 0) {
+            channel.sendMessage("The Queue Is Empty");
+            return;
+        }
     //calculating the total time of songs in queue/player
         Long curTime = audioTrack.getDuration() - audioTrack.getPosition();
         Long totalTime = curTime;
