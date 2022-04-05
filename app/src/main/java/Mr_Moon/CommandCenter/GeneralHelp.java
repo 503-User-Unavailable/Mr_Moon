@@ -12,7 +12,6 @@ public class GeneralHelp implements CommandInterface{
 
     @Override
     public String help(String prefix) {
-        // TODO Auto-generated method stub
         return "```General Commands```";
     }
     
