@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.entities.AudioChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -24,7 +24,7 @@ public class play implements CommandInterface{
         MessageChannel channel = event.getChannel();
         Member member = event.getMember();
         AudioManager manager = guild.getAudioManager();
-        VoiceChannel voiceChannel = member.getVoiceState().getChannel();
+        AudioChannel voiceChannel = member.getVoiceState().getChannel();
         
         String searches = "";
         for (int i = 1; i < msg.length; i++){

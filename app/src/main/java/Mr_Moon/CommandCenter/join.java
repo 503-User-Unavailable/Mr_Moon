@@ -3,7 +3,7 @@ package Mr_Moon.CommandCenter;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.entities.AudioChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -16,7 +16,7 @@ public class join implements CommandInterface{
         AudioManager manager = guild.getAudioManager();
         Member member= event.getMember();
         MessageChannel channel = event.getChannel();
-        VoiceChannel voiceChannel = member.getVoiceState().getChannel();
+        AudioChannel voiceChannel = member.getVoiceState().getChannel();
 
 
         if (voiceChannel == null){
