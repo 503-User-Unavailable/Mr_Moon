@@ -16,6 +16,8 @@ public class join implements CommandInterface{
         AudioManager manager = guild.getAudioManager();
         Member member= event.getMember();
         MessageChannel channel = event.getChannel();
+        //without suppressing warning the possible null pointer produces a warning
+        @SuppressWarnings("all")
         AudioChannel voiceChannel = member.getVoiceState().getChannel();
 
 

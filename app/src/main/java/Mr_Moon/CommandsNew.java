@@ -3,8 +3,9 @@ package Mr_Moon;
 
 import java.util.LinkedHashMap;
 
+import javax.annotation.Nonnull;
+
 import Mr_Moon.CommandCenter.*;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -50,18 +51,21 @@ public class CommandsNew extends ListenerAdapter{
         Roledex.put("remove", new remove());
     }
 
-    public void onMessageReceived(MessageReceivedEvent event){
+    public void onMessageReceived(@Nonnull MessageReceivedEvent event){
+        //first test, if it's said by a bot, throw it away to prevent infinite loops
+        if (event.getAuthor().isBot()) {return;}
+
+
         //the known prefix, will be used to test the prefix of events that come in
         String prefix = "~";
 
-        //getting basic stuff about the message event (like the prefix, the command itself, the user it was from, and any arguments)
+        //getting basic stuff about the message event (like the prefix, the command itself and any arguments)
         //this is used to make sure we want to try to find this key value pair from the map
         String[] msg = event.getMessage().getContentRaw().split(" ");
         String activation = msg[0].substring(1);
-        User user = event.getAuthor();
 
         //literally all we need to look through the map and get the right code (and run it!!!!)
-        if ((msg[0].contains(prefix)) && (Roledex.containsKey(activation)) && (!(user.isBot())) && (event.getChannel().getName().contains("bot"))){
+        if ((msg[0].contains(prefix)) && (Roledex.containsKey(activation))  && (event.getChannel().getName().contains("bot"))){
             //creates and sends a string with all the keys and the ways their code works for the help command
             if (activation.equals("help") || activation.equals("h")){
                 String help = "";

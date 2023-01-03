@@ -22,6 +22,8 @@ public class resume implements CommandInterface{
         GuildMusicManager guildMusicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
         AudioPlayer Audioplayer = guildMusicManager.audioPlayer;
         Member member= event.getMember();
+        //without suppressing warning the possible null pointer produces a warning
+        @SuppressWarnings("all")
         AudioChannel voiceChannel = member.getVoiceState().getChannel();
 
         if (manager.getConnectedChannel() == null){

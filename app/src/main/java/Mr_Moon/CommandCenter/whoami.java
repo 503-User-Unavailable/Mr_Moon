@@ -10,7 +10,11 @@ public class whoami implements CommandInterface{
     public void execute(MessageReceivedEvent event) {
         MessageChannel channel = event.getChannel();
         Member member= event.getMember();
-        channel.sendMessage("You are: "+ member.getNickname() + " (" + member.getUser().getName() + ")").queue();
+        //without suppressing warning the possible null pointer produces a warning
+        @SuppressWarnings("all")
+        String hold = "You are: "+ member.getNickname() + " (" + member.getUser().getName() + ")";
+        
+        channel.sendMessage(hold).queue();
         
     }
 

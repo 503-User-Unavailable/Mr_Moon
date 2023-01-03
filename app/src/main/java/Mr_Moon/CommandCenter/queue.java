@@ -25,8 +25,8 @@ public class queue implements CommandInterface{
         GuildMusicManager guildMusicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
         AudioTrack audioTrack = guildMusicManager.audioPlayer.getPlayingTrack();
         final BlockingQueue<AudioTrack> queue = guildMusicManager.scheduler.queue;
-        String loop = (guildMusicManager.scheduler.looping) ?"✅" : "❌";
-        String fullLoop = (guildMusicManager.scheduler.fullLoop) ?"✅" : "❌";
+        String loop = (guildMusicManager.scheduler.looping) ?"✅" : "X";
+        String fullLoop = (guildMusicManager.scheduler.fullLoop) ?"✅" : "X";
     //page selections
         String[] msg = event.getMessage().getContentRaw().split(" ");
         int page;
@@ -34,11 +34,6 @@ public class queue implements CommandInterface{
         else {page = Integer.parseInt(msg[1]);}
         int totalPages = queue.size()/10;
         if (queue.size()%10 != 0) {totalPages++;}
-    //seeing if there is any songs at all
-        if(queue.size() == 0) {
-            channel.sendMessage("The Queue Is Empty");
-            return;
-        }
     //calculating the total time of songs in queue/player
         Long curTime = audioTrack.getDuration() - audioTrack.getPosition();
         Long totalTime = curTime;

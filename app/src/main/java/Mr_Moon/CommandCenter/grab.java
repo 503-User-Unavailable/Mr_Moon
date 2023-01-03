@@ -4,6 +4,8 @@ package Mr_Moon.CommandCenter;
 import java.awt.Color;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Nonnull;
+
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
@@ -46,7 +48,7 @@ public class grab implements CommandInterface{
     }
 
     //what'll be sending the dm to the user, not my code I just snagged it
-    public void sendMessage(User user, MessageEmbed content) {
+    public void sendMessage(User user, @Nonnull MessageEmbed content) {
         user.openPrivateChannel().flatMap(channel -> channel.sendMessageEmbeds(content)).queue();
     }
 

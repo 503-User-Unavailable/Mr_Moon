@@ -22,6 +22,8 @@ public class loop implements CommandInterface{
         AudioPlayer Audioplayer = guildMusicManager.audioPlayer;
         AudioManager manager = guild.getAudioManager();
         Member member= event.getMember();
+        //without suppressing warning the possible null pointer produces a warning
+        @SuppressWarnings("all")
         AudioChannel voiceChannel = member.getVoiceState().getChannel();
 
         if (manager.getConnectedChannel() == null){

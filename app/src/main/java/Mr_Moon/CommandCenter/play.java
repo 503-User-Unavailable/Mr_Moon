@@ -24,6 +24,8 @@ public class play implements CommandInterface{
         MessageChannel channel = event.getChannel();
         Member member = event.getMember();
         AudioManager manager = guild.getAudioManager();
+        //without suppressing warning the possible null pointer produces a warning
+        @SuppressWarnings("all")
         AudioChannel voiceChannel = member.getVoiceState().getChannel();
         
         String searches = "";
