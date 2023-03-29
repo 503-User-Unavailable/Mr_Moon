@@ -16,7 +16,7 @@ public class App {
     //main loop, starts the bot itself
     public static void main(String[] args) throws LoginException {
     //the start of the bot(adds in the ability to use commands from Commands.java)
-    JDABuilder builder = JDABuilder.createDefault("OTA3NDMyNzE2ODkzNTU2NzM2.YYnGkg.RNzkwl866ZH7bW2jAW36GDo4d_k").addEventListeners(new CommandsNew());
+    JDABuilder builder = JDABuilder.createDefault(args[0]).addEventListeners(new CommandsNew());
     //let's you actually see a message's content
     builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
     // Disable parts of the cache (put here by default)
