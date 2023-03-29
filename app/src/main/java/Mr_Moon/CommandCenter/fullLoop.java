@@ -4,10 +4,10 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 
 import Mr_Moon.GuildMusicManager;
 import Mr_Moon.PlayerManager;
-import net.dv8tion.jda.api.entities.AudioChannel;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -22,8 +22,6 @@ public class fullLoop implements CommandInterface{
         AudioPlayer Audioplayer = guildMusicManager.audioPlayer;
         AudioManager manager = guild.getAudioManager();
         Member member= event.getMember();
-        //without suppressing warning the possible null pointer produces a warning
-        @SuppressWarnings("all")
         AudioChannel voiceChannel = member.getVoiceState().getChannel();
 
         if (manager.getConnectedChannel() == null){

@@ -6,9 +6,9 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import Mr_Moon.PlayerManager;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.entities.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -24,8 +24,7 @@ public class play implements CommandInterface{
         MessageChannel channel = event.getChannel();
         Member member = event.getMember();
         AudioManager manager = guild.getAudioManager();
-        //without suppressing warning the possible null pointer produces a warning
-        @SuppressWarnings("all")
+
         AudioChannel voiceChannel = member.getVoiceState().getChannel();
         
         String searches = "";
@@ -55,7 +54,7 @@ public class play implements CommandInterface{
 
     @Override
     public String help(String prefix) {
-        return "**Play**: Plays a song from youtube (" + prefix + "{play/p} [search terms or URL])";
+        return "**Play**: Plays a song from youtube ( " + prefix + "{play/p} [search terms or URL] )";
     }
     
 }

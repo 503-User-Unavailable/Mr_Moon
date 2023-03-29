@@ -29,7 +29,7 @@ dependencies {
     implementation 'com.google.guava:guava:30.1.1-jre'
     
     //Change 'implementation' to 'compile' in old Gradle versions
-    implementation("net.dv8tion:JDA:5.0.0-alpha.9")
+    implementation("net.dv8tion:JDA:5.0.0-beta.6")
 
     //Change 'implementation' to 'compile' in old gradle versions
     implementation 'com.sedmelluq:lavaplayer:1.3.77'
@@ -51,4 +51,4 @@ java {
     }
 }
 
-version = '2.0.4'
+version = '2.0.5'

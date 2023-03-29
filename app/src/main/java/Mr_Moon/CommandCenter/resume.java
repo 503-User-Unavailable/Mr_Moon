@@ -6,8 +6,8 @@ import Mr_Moon.GuildMusicManager;
 import Mr_Moon.PlayerManager;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -22,8 +22,6 @@ public class resume implements CommandInterface{
         GuildMusicManager guildMusicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
         AudioPlayer Audioplayer = guildMusicManager.audioPlayer;
         Member member= event.getMember();
-        //without suppressing warning the possible null pointer produces a warning
-        @SuppressWarnings("all")
         AudioChannel voiceChannel = member.getVoiceState().getChannel();
 
         if (manager.getConnectedChannel() == null){

@@ -1,7 +1,7 @@
 package Mr_Moon.CommandCenter;
 
 
-import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 
@@ -16,7 +16,7 @@ public class ping implements CommandInterface{
 
     @Override
     public String help(String prefix) {
-        return "**Ping**: Simple 'is it up' command (" + prefix + "ping)";
+        return "**Ping**: Simple 'is it up' command ( " + prefix + "ping )";
         
     }
 }

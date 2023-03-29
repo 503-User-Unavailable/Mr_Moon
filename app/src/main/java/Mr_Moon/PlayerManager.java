@@ -18,7 +18,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 
@@ -54,30 +54,28 @@ public class PlayerManager {
             //adding a single track [ONLY WORKS FOR LINKS, YOUTUBE SEARCHES ARE CONSIDERED PLAYLISTS]
             @Override
             public void trackLoaded(AudioTrack track) {
-            //inputing the user data in the track
+                //inputing the user data in the track
                 track.setUserData(event.getMember());
                 
-            //prereq variables
+                //prereq variables
                 String[] URLSplit = track.getInfo().uri.split("=");
                 String URL = "https://i.ytimg.com/vi/" + URLSplit[1] + "/default.jpg";
                 GuildMusicManager guildMusicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
                 AudioPlayer Audioplayer = guildMusicManager.audioPlayer;
 
-                //time shenanagins
+                //Calculating total time and making it into a formatted string
                 Long totalTime = (long) 0;
-                //getting the time of the playing track and adding it to totalTime
                 if (!(Audioplayer.getPlayingTrack() == null)) {totalTime += (Audioplayer.getPlayingTrack().getDuration() - Audioplayer.getPlayingTrack().getPosition());}
-                //going through every song in the queue and adding it to totalTime
                 for (var elt : musicManager.scheduler.queue) {totalTime += elt.getDuration();}
                 String totalTimeString = formatTime(totalTime);
 
-            //if its empty AKA: first song played after silence
+                //if its empty AKA: first song played after silence
                 if (Audioplayer.getPlayingTrack() == null){
                     channel.sendMessage("**Searching** :mag_right: `"+ trackUrl +"`\n"
                     + "**Playing** :notes: `" + track.getInfo().title + "` - Now!").queue();
                 }
+                //not the first song after silence
                 else{
-            //not the first song after silence
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setAuthor("Added to queue", null, event.getAuthor().getAvatarUrl());
                     embed.setDescription("**[" + track.getInfo().title + "](" + track.getInfo().uri + ")**");
@@ -100,7 +98,7 @@ public class PlayerManager {
 
                 //this is for if it is an actual youtube playlist, not a search
                 if (!playlist.isSearchResult()){
-                //prereqs
+                    //prereqs
                     GuildMusicManager guildMusicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
                     AudioPlayer Audioplayer = guildMusicManager.audioPlayer;
                     String queueWait = (Audioplayer.getPlayingTrack() == null) ? "Now" : (musicManager.scheduler.queue.size() + 1) + "";
@@ -113,7 +111,7 @@ public class PlayerManager {
                     String totalTimeString = formatTime(totalTime);
 
 
-                //embed being made and sent
+                    //embed being made and sent
                     EmbedBuilder embed2 = new EmbedBuilder();
                     embed2.setColor(new Color(255,25,25));
                     embed2.setAuthor("Added to queue", null, event.getAuthor().getAvatarUrl());
@@ -129,7 +127,7 @@ public class PlayerManager {
                     if ((count == 0) || (!playlist.isSearchResult())){
                         if ((playlist.isSearchResult())) {
 
-                        //prereqs
+                            //prereqs
                             String[] URLSplit = track.getInfo().uri.split("=");
                             String URL = "https://i.ytimg.com/vi/" + URLSplit[1] + "/default.jpg";
                             String searchResults = trackUrl.split("ytsearch:")[1];
@@ -168,27 +166,23 @@ public class PlayerManager {
                 }  
             }
 
-            //not adding a track because it couldn't find any
             @Override
             public void noMatches() {
                 // Notify the user that we've got nothing
-                channel.sendMessage("I found nothin...").queue();
+                channel.sendMessage("No songs found with that title...").queue();
             }
           
-            //how tf did you make it fail????
             @Override
             public void loadFailed(FriendlyException throwable) {
                 // Notify the user that everything exploded
-                channel.sendMessage("Uhhhhhh, call repair man plz. ¯\\_(ツ)_/¯ ").queue();
+                channel.sendMessage("Please Ask bot owner for assistance.").queue();
             }
         });
     }
 
     //A quick little method to get the instance of the currect player manager, if there isn't one, it creates one.
     public static PlayerManager getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new PlayerManager();
-        }
+        if (INSTANCE == null) {INSTANCE = new PlayerManager();}
         return INSTANCE;
     }
 

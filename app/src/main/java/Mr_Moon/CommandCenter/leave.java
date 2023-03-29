@@ -3,9 +3,7 @@ package Mr_Moon.CommandCenter;
 import Mr_Moon.GuildMusicManager;
 import Mr_Moon.PlayerManager;
 import net.dv8tion.jda.api.entities.Guild;
-
-import net.dv8tion.jda.api.entities.MessageChannel;
-
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -31,7 +29,7 @@ public class leave implements CommandInterface{
 
     @Override
     public String help(String prefix) {
-        return "**Leave**: Exits the current call (" + prefix + "{leave/fuckoff/shut} )";
+        return "**Leave**: Exits the current call ( " + prefix + "{leave/fuckoff/shut} )";
     }
     
 }

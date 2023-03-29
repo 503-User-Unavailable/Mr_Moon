@@ -6,10 +6,8 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 public class GuildMusicManager {
     //when making any new object, you have to have the attributes of that object in this method at the start
     private final AudioPlayerSendHandler sendHandler;
-    
     public final AudioPlayer audioPlayer;
     public final TrackScheduler scheduler;
-
 
     //the object creation itself, adding attributes to the object
     public GuildMusicManager(AudioPlayerManager manager){

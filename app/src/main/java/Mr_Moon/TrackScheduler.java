@@ -73,7 +73,6 @@ public class TrackScheduler extends AudioEventAdapter {
     }
 
     public void nextTrack() {
-        //just seeing if fullLoop is active, and 
         // Start the next track, regardless of if something is already playing or not. In case queue was empty, we are
         // giving null to startTrack, which is a valid argument and will simply stop the player.
         player.startTrack(queue.poll(), false);
@@ -87,5 +86,6 @@ public class TrackScheduler extends AudioEventAdapter {
     @Override
     public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
         // Audio track has been unable to provide us any audio, might want to just start a new track
+        nextTrack();
     }
 }

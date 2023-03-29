@@ -11,7 +11,7 @@ public class helpCommand implements CommandInterface{
 
     @Override
     public String help(String prefix) {
-        return "**Help**: Displays this message (" + prefix + "{help/h})";
+        return "**Help**: Displays this message ( " + prefix + "{help/h} ) ";
     }
     
 }

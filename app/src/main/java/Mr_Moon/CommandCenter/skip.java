@@ -7,7 +7,7 @@ import Mr_Moon.GuildMusicManager;
 import Mr_Moon.PlayerManager;
 
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
@@ -31,7 +31,8 @@ public class skip implements CommandInterface{
             channel.sendMessage("There is no track to skip").queue();
         }
         else{
-            guildMusicManager.scheduler.nextTrack();
+            Long time = Audioplayer.getPlayingTrack().getDuration();
+            Audioplayer.getPlayingTrack().setPosition(time);
             channel.sendMessage(":fast_forward: ***Skipped*** :thumbsup:").queue();
         }
         
@@ -39,7 +40,7 @@ public class skip implements CommandInterface{
 
     @Override
     public String help(String prefix) {
-        return "**Skip**: Skips current song (" + prefix + "{skip/s})";
+        return "**Skip**: Skips current song ( " + prefix + "{skip/s} )";
     }
     
 }

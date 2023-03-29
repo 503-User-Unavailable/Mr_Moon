@@ -5,30 +5,29 @@ import javax.security.auth.login.LoginException;
 
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.Compression;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 
 //testing method, to get the errors to stay away
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
   
     //main loop, starts the bot itself
     public static void main(String[] args) throws LoginException {
-        
     //the start of the bot(adds in the ability to use commands from Commands.java)
-    JDABuilder builder = JDABuilder.createDefault(args[0]).addEventListeners(new CommandsNew());
-    // Disable parts of the cache
+    JDABuilder builder = JDABuilder.createDefault("OTA3NDMyNzE2ODkzNTU2NzM2.YYnGkg.RNzkwl866ZH7bW2jAW36GDo4d_k").addEventListeners(new CommandsNew());
+    //let's you actually see a message's content
+    builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
+    // Disable parts of the cache (put here by default)
     builder.disableCache(CacheFlag.MEMBER_OVERRIDES);
-    // Enable the bulk delete event
+    // Disable the bulk delete event (put here by default)
     builder.setBulkDeleteSplittingEnabled(false);
     // Disable compression (not recommended)
     builder.setCompression(Compression.NONE);
-    // Set activity
+    // Set activity (put here by default)
     builder.setActivity(Activity.watching("Discord"));
-    //actually building the bot
+    //actually building the bot (put here by default)
     builder.build();
     
     }

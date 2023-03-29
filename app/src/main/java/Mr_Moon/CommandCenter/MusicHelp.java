@@ -6,7 +6,7 @@ public class MusicHelp implements CommandInterface{
 
     @Override
     public void execute(MessageReceivedEvent event) {
-        //Shut your up
+        //Nothing Happens Here
         
     }
 

@@ -6,7 +6,7 @@ public class GeneralHelp implements CommandInterface{
 
     @Override
     public void execute(MessageReceivedEvent event) {
-        //fuck doing anything here, shut your up
+        //Nothing Happens Here
         
     }
 
