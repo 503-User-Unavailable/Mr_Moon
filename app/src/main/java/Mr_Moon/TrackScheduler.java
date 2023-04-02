@@ -12,13 +12,12 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
 
 public class TrackScheduler extends AudioEventAdapter {
-    //when making any new object, you have to have the attributes of that object in this method at the start
     public final AudioPlayer player;
     public final BlockingQueue<AudioTrack> queue;
     public boolean looping = false;
     public boolean fullLoop = false;
 
-    public TrackScheduler(AudioPlayer player){
+    public TrackScheduler(AudioPlayer player) {
         this.player = player;
         this.queue = new LinkedBlockingQueue<>();
     }
@@ -47,17 +46,15 @@ public class TrackScheduler extends AudioEventAdapter {
         // next track starts
     }
   
-    public void queuedLoop() {
-        
-    }
+    public void queuedLoop() {}
 
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         if (endReason.mayStartNext) {
-            if (this.looping){
+            if (this.looping) {
                 this.player.startTrack(track.makeClone(), false);
             }
-            else if (this.fullLoop){
+            else if (this.fullLoop) {
                 this.queue.offer(track.makeClone());
                 nextTrack();
             }

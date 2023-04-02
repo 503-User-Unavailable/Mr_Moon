@@ -16,8 +16,8 @@ public class App {
     //main loop, starts the bot itself
     public static void main(String[] args) throws LoginException {
     //the start of the bot(adds in the ability to use commands from Commands.java)
-    JDABuilder builder = JDABuilder.createDefault(args[0]).addEventListeners(new CommandsNew());
-    //let's you actually see a message's content
+    JDABuilder builder = JDABuilder.createDefault(args[0]).addEventListeners(new CommandHandler());
+    //show's messages contents
     builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
     // Disable parts of the cache (put here by default)
     builder.disableCache(CacheFlag.MEMBER_OVERRIDES);
@@ -29,6 +29,5 @@ public class App {
     builder.setActivity(Activity.watching("Discord"));
     //actually building the bot (put here by default)
     builder.build();
-    
     }
 }
