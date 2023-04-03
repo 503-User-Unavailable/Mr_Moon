@@ -55,11 +55,7 @@ public class grab implements CommandInterface {
         long minutes = (timeInMillis / TimeUnit.MINUTES.toMillis(1)) - (60 * hours);
         long seconds = (timeInMillis / TimeUnit.SECONDS.toMillis(1)) - (60 * minutes) - (3600 * hours);
 
-        if (hours == 0) {
-            return String.format("%01d:%02d", minutes, seconds);
-        }
-        else {
-            return String.format("%01d:%02d:%02d", hours, minutes, seconds);
-        }
+        if (hours == 0) {return String.format("%01d:%02d", minutes, seconds);}
+        else {return String.format("%01d:%02d:%02d", hours, minutes, seconds);}
     }
 }
