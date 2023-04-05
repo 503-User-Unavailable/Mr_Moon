@@ -52,6 +52,7 @@ public class CommandHandler extends ListenerAdapter {
         Roledex.put("forward", new forward());
         Roledex.put("rewind", new rewind());
         Roledex.put("remove", new remove());
+        Roledex.put("shuffle", new shuffleQueue());
     }
 
     public void onSlashCommandInteraction(@Nonnull SlashCommandInteractionEvent event) {

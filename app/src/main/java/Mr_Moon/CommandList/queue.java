@@ -57,6 +57,7 @@ public class queue implements CommandInterface {
                 + audioTrack.getInfo().uri + ") | `"
                 + formatTime(audioTrack.getDuration())
                 + " Requested by: " + requestedBy +"`");
+                
         for (int i = 0; i < 9; i++) {
             int offset = (10 *(page - 1));
             if (trackList.size() > (i + offset)) {
