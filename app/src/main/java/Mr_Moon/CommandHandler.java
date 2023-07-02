@@ -11,8 +11,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class CommandHandler extends ListenerAdapter {
-    //setting up a map of keys and values those keys lead to
-    public LinkedHashMap<String,CommandInterface> Roledex = new LinkedHashMap<String,CommandInterface>();
+    //setting up a map of commands and command names
+    private static LinkedHashMap<String,CommandInterface> Roledex = new LinkedHashMap<String,CommandInterface>();
     public String prefix = "~";
 
     public CommandHandler() {  
@@ -55,7 +55,12 @@ public class CommandHandler extends ListenerAdapter {
         Roledex.put("shuffle", new shuffleQueue());
     }
 
+    public static LinkedHashMap<String,CommandInterface> getCommands() {
+        return Roledex;
+    }
+
     public void onSlashCommandInteraction(@Nonnull SlashCommandInteractionEvent event) {
+        event.getName();
         //TO-DO; 
     }
 
@@ -64,16 +69,9 @@ public class CommandHandler extends ListenerAdapter {
         if (event.getAuthor().isBot()) {return;}
         String[] msg = event.getMessage().getContentRaw().split(" ");
         String activation = msg[0].substring(1);
-        if (!( msg[0].contains(prefix) && Roledex.containsKey(activation) && event.getChannel().getName().contains("bot") )) {return;}
-        else if (activation.equals("help") || activation.equals("h")) {
-            String help = "";
-            for (var elt : Roledex.keySet()) {
-                //weeding out duplicates
-                if (!(help.contains( Roledex.get(elt).help(prefix) ))) {
-                    help = help + Roledex.get(elt).help(prefix) + "\n";
-                }
-            }                    
-            event.getChannel().sendMessage(help).queue();
+
+        if (!( msg[0].contains(prefix) && Roledex.containsKey(activation) && event.getChannel().getName().contains("bot") )) {
+            return;
         }
         else {
             //run command
