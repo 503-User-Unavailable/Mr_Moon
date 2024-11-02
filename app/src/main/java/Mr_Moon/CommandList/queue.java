@@ -35,7 +35,7 @@ public class queue implements CommandInterface {
         if (msg.length < 2) {page = 1;}
         else {page = Integer.parseInt(msg[1]);}
         int totalPages = queue.size()/10;
-        if (queue.size()%10 != 0) {totalPages++;}
+        if (queue.size() % 10 != 0) {totalPages++;}
 
         final List<AudioTrack> trackList = new ArrayList<>(queue);
         AudioTrack audioTrack = guildMusicManager.audioPlayer.getPlayingTrack();
@@ -58,7 +58,7 @@ public class queue implements CommandInterface {
                 + formatTime(audioTrack.getDuration())
                 + " Requested by: " + requestedBy +"`");
                 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i <= 9; i++) {
             int offset = (10 *(page - 1));
             if (trackList.size() > (i + offset)) {
 

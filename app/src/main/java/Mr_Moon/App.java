@@ -26,7 +26,7 @@ public class App {
     // Disable compression (not recommended)
     builder.setCompression(Compression.NONE);
     // Set activity (put here by default)
-    builder.setActivity(Activity.watching("Discord"));
+    builder.setActivity(Activity.watching("You :3"));
     //actually building the bot (put here by default)
     builder.build();
     }

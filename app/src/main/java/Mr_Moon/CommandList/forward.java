@@ -17,6 +17,12 @@ public class forward implements CommandInterface {
         GuildMusicManager guildMusicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
         AudioPlayer Audioplayer = guildMusicManager.audioPlayer;
         AudioTrack track = Audioplayer.getPlayingTrack();
+
+        //returning if there is nothing playing
+        if (track == null) {
+            event.getChannel().sendMessage("there is no playing song to fast forward").queue();
+            return;
+        }
     
         //extracting and forwarding time by specified amount
         long currentTime = track.getPosition();

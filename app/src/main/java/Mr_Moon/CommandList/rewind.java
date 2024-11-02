@@ -14,6 +14,12 @@ public class rewind implements CommandInterface {
     public void execute(MessageReceivedEvent event) {
         AudioPlayer Audioplayer = PlayerManager.getInstance().getMusicManager(event.getGuild()).audioPlayer;
         AudioTrack track = Audioplayer.getPlayingTrack();
+
+        //returning if there is nothing playing
+        if (track == null) {
+            event.getChannel().sendMessage("there is no playing song to rewind").queue();
+            return;
+        }
         
         //extracting and rewinding time by specified amount
         long currentTime = track.getPosition();

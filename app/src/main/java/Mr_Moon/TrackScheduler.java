@@ -55,8 +55,9 @@ public class TrackScheduler extends AudioEventAdapter {
                 this.player.startTrack(track.makeClone(), false);
             }
             else if (this.fullLoop) {
-                this.queue.offer(track.makeClone());
+                AudioTrack copy = track.makeClone();
                 nextTrack();
+                this.queue.offer(copy);
             }
             else nextTrack();
         }
@@ -77,6 +78,7 @@ public class TrackScheduler extends AudioEventAdapter {
 
     @Override
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
+        System.out.println(exception.toString());
         // An already playing track threw an exception (track end event will still be received separately)
     }
   

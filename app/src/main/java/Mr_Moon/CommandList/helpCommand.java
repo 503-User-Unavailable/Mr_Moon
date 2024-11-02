@@ -10,14 +10,14 @@ public class helpCommand implements CommandInterface {
 
     @Override
     public void execute(MessageReceivedEvent event) {
-        LinkedHashMap<String,CommandInterface> Roledex = CommandHandler.getCommands();
+        LinkedHashMap<String,CommandInterface> newRoledex = CommandHandler.getCommands();
         String prefix = "~";
 
         String help = "";
-        for (var elt : Roledex.keySet()) {
+        for (var elt : newRoledex.keySet()) {
             //weeding out duplicates
-            if (!(help.contains( Roledex.get(elt).help(prefix) ))) {
-                help = help + Roledex.get(elt).help(prefix) + "\n";
+            if (!(help.contains( newRoledex.get(elt).help(prefix) ))) {
+                help = help + newRoledex.get(elt).help(prefix) + "\n";
             }
         }                    
         event.getChannel().sendMessage(help).queue();

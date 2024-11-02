@@ -21,7 +21,7 @@ public class shuffleQueue implements CommandInterface {
         AudioManager manager = event.getGuild().getAudioManager();
         final BlockingQueue<AudioTrack> queue = guildMusicManager.scheduler.queue;
 
-        if (event.getMember().getVoiceState().getChannel() == manager.getConnectedChannel()) {
+        if (event.getMember().getVoiceState().getChannel() != manager.getConnectedChannel()) {
             channel.sendMessage("cannot shuffle queue from outside voice channel").queue();
             return;
         }

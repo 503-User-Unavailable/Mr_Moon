@@ -42,7 +42,6 @@ public class CommandHandler extends ListenerAdapter {
         //loop commands
             Roledex.put("loop", new loop());
             Roledex.put("l", new loop());
-        //full loop commands
             Roledex.put("fl",new fullLoop());
         Roledex.put("clear", new clear());
         Roledex.put("np", new nowPlaying());
@@ -65,15 +64,12 @@ public class CommandHandler extends ListenerAdapter {
     }
 
     public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
-        //testing if message is a command
+        //testing if message is a command from a valid 
         if (event.getAuthor().isBot()) {return;}
         String[] msg = event.getMessage().getContentRaw().split(" ");
         String activation = msg[0].substring(1);
 
-        if (!( msg[0].contains(prefix) && Roledex.containsKey(activation) && event.getChannel().getName().contains("bot") )) {
-            return;
-        }
-        else {
+        if (msg[0].contains(prefix) && Roledex.containsKey(activation) && event.getChannel().getName().contains("bot") ) {
             //run command
             Roledex.get(activation).execute(event);
         }
